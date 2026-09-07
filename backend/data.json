@@ -1,0 +1,142 @@
+{
+  "users": [
+    {
+      "id": "7c56119c-6906-49c1-8e8b-ff5bdc2dbec3",
+      "username": "e2e_user_20260906125734",
+      "password": "$2a$10$84xDjbmr5u.QxVmR859SyOte.D2F1u6Ol4iYeIDPGV8LgvLEOlOvO",
+      "currency": "₹",
+      "createdAt": "2026-09-06T07:27:38.531Z"
+    },
+    {
+      "id": "3a96d1de-5165-426a-866e-19de5de780ba",
+      "username": "roshan",
+      "password": "$2a$10$4WdoiOZGvLkyyPhL0D0ODudPqSCl..V4Qih92uxpLUeehHlxo0csa",
+      "currency": "₹",
+      "createdAt": "2026-09-06T07:31:21.017Z"
+    },
+    {
+      "id": "f89dd54f-e7a2-47c9-b6db-5c95547cd285",
+      "username": "e2e_stat_20260906133025",
+      "password": "$2a$10$1cA8SdacobQ1rVIC1G3d7OGAd2QqVSQhQ3CR0HYtZFM.04Wt/Cos6",
+      "currency": "₹",
+      "createdAt": "2026-09-06T08:00:26.648Z"
+    },
+    {
+      "id": "6b6e0c25-81ac-451c-b601-3f9d7ce8f550",
+      "username": "e2e_stat2_20260906133158",
+      "password": "$2a$10$7fzFDHHTobCbRxZf8pTtW.1KiIminiqEWRlrxldnAfvgP8z9rd7Ia",
+      "currency": "₹",
+      "createdAt": "2026-09-06T08:02:00.110Z"
+    }
+  ],
+  "expenses": {
+    "7c56119c-6906-49c1-8e8b-ff5bdc2dbec3": [
+      {
+        "id": "db884a4e-f3ac-45c8-83b5-c795934f6720",
+        "title": "Coffee",
+        "amount": 3.5,
+        "category": "Food",
+        "date": "2026-09-06",
+        "type": "expense",
+        "description": "Test coffee",
+        "createdAt": "2026-09-06T07:27:46.281Z"
+      }
+    ],
+    "3a96d1de-5165-426a-866e-19de5de780ba": [
+      {
+        "id": "a6fdcdd3-fd7d-4a22-bf4f-06f5e4a75b48",
+        "title": "salary",
+        "amount": 100,
+        "category": "General",
+        "date": "2026-01-01",
+        "type": "expense",
+        "description": "",
+        "createdAt": "2026-09-06T07:37:45.267Z"
+      },
+      {
+        "id": "4db30466-bc73-4168-8fd1-bf44efab60f6",
+        "title": "vege",
+        "amount": 10,
+        "category": "General",
+        "date": "2026-02-01",
+        "type": "expense",
+        "description": "",
+        "createdAt": "2026-09-06T07:38:03.981Z"
+      },
+      {
+        "id": "883b43be-e37d-4114-86c2-af66be208765",
+        "title": "buissness",
+        "amount": 200,
+        "category": "General",
+        "date": "2026-02-01",
+        "type": "expense",
+        "description": "",
+        "createdAt": "2026-09-06T07:38:43.897Z"
+      },
+      {
+        "id": "9dda818e-14c3-4639-a4c4-d03195f4cdfb",
+        "title": "hat",
+        "amount": 10,
+        "category": "General",
+        "date": "2026-09-06",
+        "type": "expense",
+        "description": "",
+        "createdAt": "2026-09-06T07:47:30.128Z"
+      },
+      {
+        "id": "83bfd437-f94f-4064-aa3d-6932c1105401",
+        "title": "salary",
+        "amount": 500,
+        "category": "General",
+        "date": "10101-01-01",
+        "type": "income",
+        "description": "",
+        "createdAt": "2026-09-06T07:47:59.011Z"
+      },
+      {
+        "id": "0d7d4a30-7d9f-406f-9fc9-0f8a289c7225",
+        "title": "college fees",
+        "amount": 1000,
+        "category": "Education",
+        "date": "2026-09-06",
+        "type": "expense",
+        "description": "",
+        "createdAt": "2026-09-06T08:01:25.245Z"
+      }
+    ],
+    "f89dd54f-e7a2-47c9-b6db-5c95547cd285": [
+      {
+        "id": "bda3ade0-e2dc-452e-80f3-2f7a8e1e797a",
+        "title": "Groceries",
+        "amount": 200,
+        "category": "Food",
+        "date": "2026-09-06",
+        "type": "expense",
+        "description": "Test expense",
+        "createdAt": "2026-09-06T08:00:44.629Z"
+      }
+    ],
+    "6b6e0c25-81ac-451c-b601-3f9d7ce8f550": [
+      {
+        "id": "06140424-18e8-47e3-8c21-15945178cff0",
+        "title": "Salary",
+        "amount": 1500,
+        "category": "Salary",
+        "date": "2026-09-06",
+        "type": "income",
+        "description": "Test income",
+        "createdAt": "2026-09-06T08:02:04.469Z"
+      },
+      {
+        "id": "72ef81d0-93d0-437b-a91e-78da8e04e763",
+        "title": "Books",
+        "amount": 120,
+        "category": "Education",
+        "date": "2026-09-06",
+        "type": "expense",
+        "description": "Test expense",
+        "createdAt": "2026-09-06T08:02:06.980Z"
+      }
+    ]
+  }
+}

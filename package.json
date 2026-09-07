@@ -1,0 +1,14 @@
+{
+  "name": "expense-tracker-fullstack",
+  "version": "1.0.0",
+  "description": "A modern full-stack expense tracking application",
+  "main": "index.html",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "install-backend": "cd backend && npm install"
+  },
+  "keywords": ["expense-tracker", "fullstack", "javascript", "nodejs"],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- Homepage Section -->
+  <div id="homepage">
+    <nav class="navbar">
+      <div class="logo">💰 Expense Tracker</div>
+      <div class="nav-links">
+        <a href="#" onclick="scrollToSection('features')">Features</a>
+        <a href="#" onclick="scrollToSection('about')">About</a>
+        <a href="#" onclick="goToAuth()">Login</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <h1>Take Control of Your Finances</h1>
+      <p>Track your expenses, manage your budget, and achieve your financial goals</p>
+      <button onclick="goToAuth()" class="hero-btn">Get Started</button>
+    </div>
+
+    <div id="features" class="features">
+      <h2>Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Track Expenses</h3>
+          <p>Easy to use interface to log all your expenses</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Statistics</h3>
+          <p>Detailed analytics and breakdown by category</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💱</div>
+          <h3>Multi-Currency</h3>
+          <p>Support for multiple currency options</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Secure</h3>
+          <p>Your data is safe and stored locally</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="about" class="about">
+      <h2>About Expense Tracker</h2>
+      <p>Expense Tracker is a simple yet powerful tool designed to help you manage your finances efficiently. Track every penny, analyze spending patterns, and make informed financial decisions.</p>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Expense Tracker. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Authentication Section -->
+  <div id="auth" style="display: none;">
+    <div id="login-form">
+      <button class="back-btn" onclick="goToHomepage()">← Back</button>
+      <h2>Login</h2>
+      <input type="text" id="login-username" placeholder="Username">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()" class="primary-btn">Login</button>
+      <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+    </div>
+    
+    <div id="signup-form" style="display: none;">
+      <button class="back-btn" onclick="goToHomepage()">← Back</button>
+      <h2>Create New Account</h2>
+      <input type="text" id="signup-username" placeholder="Username">
+      <input type="email" id="signup-email" placeholder="Email">
+      <input type="password" id="signup-password" placeholder="Password">
+      <input type="password" id="signup-confirm-password" placeholder="Confirm Password">
+      <button onclick="signup()" class="primary-btn">Sign Up</button>
+      <button onclick="forgotPassword()" class="secondary-btn">Forgot your Password</button>
+      <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+    </div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div id="dashboard" style="display: none;">
+    <div class="dashboard-header">
+      <div class="dashboard-title">
+        <h1>Dashboard</h1>
+      </div>
+      <div class="dashboard-nav">
+        <button onclick="showProfileModal()" class="profile-btn">👤 Profile</button>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </div>
+
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-menu">
+          <button class="menu-item active" onclick="showDashboardView('overview', this)">📊 Overview</button>
+          <button class="menu-item" onclick="showDashboardView('expenses', this)">💸 Expenses</button>
+          <button class="menu-item" onclick="showDashboardView('statistics', this)">📈 Statistics</button>
+          <button class="menu-item" onclick="showDashboardView('settings')">⚙️ Settings</button>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="dashboard-content">
+        
+        <!-- Overview View -->
+        <div id="overview-view" class="view">
+          <div class="stats-cards">
+            <div class="stat-card">
+              <h3>Balance</h3>
+              <p class="stat-value"><span id="dashboard-currency">₹</span><span id="balance">0</span></p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Income</h3>
+              <p class="stat-value"><span id="dashboard-currency">₹</span><span id="total-income">0</span></p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Expenses</h3>
+              <p class="stat-value"><span id="dashboard-currency">₹</span><span id="total-expenses">0</span></p>
+            </div>
+            <div class="stat-card">
+              <h3>This Month</h3>
+              <p class="stat-value"><span id="dashboard-currency">₹</span><span id="month-total">0</span></p>
+            </div>
+          </div>
+
+          <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <button onclick="showDashboardView('expenses')" class="action-btn">➕ Add New Expense</button>
+            <button onclick="showDashboardView('statistics')" class="action-btn">📊 View Statistics</button>
+          </div>
+        </div>
+
+        <!-- Expenses View -->
+        <div id="expenses-view" class="view" style="display: none;">
+          <h2>Manage Transactions</h2>
+
+          <div class="expense-form">
+            <h3>Add Transaction</h3>
+            <input type="text" id="title" placeholder="Title (e.g. Salary, Groceries)">
+            <div class="row">
+              <input type="number" id="amount" placeholder="Amount" step="0.01">
+              <select id="type">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+            <select id="category">
+              <option value="General">General</option>
+              <option value="Food">Food & Dining</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills & Utilities</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Education">Education</option>
+              <option value="Travel">Travel</option>
+              <option value="Other">Other</option>
+            </select>
+            <input type="date" id="expense-date">
+            <input type="text" id="description" placeholder="Optional description">
+            <div class="form-actions">
+              <button onclick="addTransaction()" class="primary-btn">Save Transaction</button>
+              <button onclick="clearTransactionForm()" class="secondary-btn">Clear</button>
+            </div>
+          </div>
+
+          <div class="filters">
+            <h3>Filter Transactions</h3>
+            <input type="date" id="start-date" placeholder="Start Date">
+            <input type="date" id="end-date" placeholder="End Date">
+            <select id="filter-category">
+              <option value="">All Categories</option>
+              <option value="General">General</option>
+              <option value="Food">Food & Dining</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills & Utilities</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Education">Education</option>
+              <option value="Travel">Travel</option>
+              <option value="Other">Other</option>
+            </select>
+            <button onclick="applyFilters()" class="primary-btn">Filter</button>
+            <button onclick="clearFilters()" class="secondary-btn">Clear</button>
+          </div>
+
+          <h3>Transactions</h3>
+          <div class="search-row">
+            <input type="text" id="search" placeholder="Search by title or description" oninput="applySearchFilter()">
+            <button onclick="exportCSV()" class="secondary-btn">Export CSV</button>
+            <label class="dark-toggle"><input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode()"> Dark</label>
+          </div>
+          <table id="transactions-table">
+            <thead>
+              <tr><th>Date</th><th>Title</th><th>Category</th><th>Type</th><th>Amount</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="list"></tbody>
+          </table>
+          <h2>Shown Total: <span id="currency-symbol">₹</span><span id="total">0</span></h2>
+        </div>
+
+        <!-- Statistics View -->
+        <div id="statistics-view" class="view" style="display: none;">
+          <h2>Expense Statistics</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <h3>Total Expenses: <span id="stats-total">0</span></h3>
+            </div>
+            <div class="stat-item">
+              <h3>Number of Expenses: <span id="stats-count">0</span></h3>
+            </div>
+            <div class="stat-item">
+              <h3>Average Expense: <span id="stats-average">0</span></h3>
+            </div>
+            <div class="stat-item">
+              <h3>By Category:</h3>
+              <canvas id="category-chart" height="200"></canvas>
+            </div>
+            <div class="stat-item">
+              <h3>Monthly Breakdown:</h3>
+              <canvas id="monthly-chart" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings View -->
+        <div id="settings-view" class="view" style="display: none;">
+          <h2>Settings</h2>
+          <div class="settings-form">
+            <h3>Preferences</h3>
+            <label for="currency">Currency:</label>
+            <select id="currency" onchange="changeCurrency()">
+              <option value="₹">INR (₹)</option>
+              <option value="$">USD ($)</option>
+              <option value="€">EUR (€)</option>
+              <option value="£">GBP (£)</option>
+              <option value="¥">JPY (¥)</option>
+              <option value="₽">RUB (₽)</option>
+              <option value="₩">KRW (₩)</option>
+              <option value="₦">NGN (₦)</option>
+            </select>
+            <button onclick="saveSettings()" class="primary-btn">Save Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div id="profile-modal" class="modal" style="display: none;">
+    <div class="modal-content profile-modal-content">
+      <span class="close" onclick="closeProfileModal()">&times;</span>
+      <h2>Profile Information</h2>
+      <div class="profile-info">
+        <div class="profile-header">
+          <div class="avatar">👤</div>
+          <div class="profile-details">
+            <h3 id="profile-username">Username</h3>
+            <p id="profile-email">email@example.com</p>
+            <p id="profile-joined">Joined: </p>
+          </div>
+        </div>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <p>Total Expenses</p>
+            <h4 id="profile-total-expenses">0</h4>
+          </div>
+          <div class="profile-stat">
+            <p>Total Spent</p>
+            <h4><span id="profile-currency">₹</span><span id="profile-total-spent">0</span></h4>
+          </div>
+          <div class="profile-stat">
+            <p>Member Since</p>
+            <h4 id="profile-days">0 days</h4>
+          </div>
+        </div>
+        <div class="profile-actions">
+          <button onclick="editProfile()" class="primary-btn">Edit Profile</button>
+          <button onclick="changePassword()" class="secondary-btn">Change Password</button>
+          <button onclick="deleteAccount()" class="danger-btn">Delete Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
