@@ -81,6 +81,10 @@ A modern, full-stack expense tracking application with user authentication, mult
 
    Then open `http://localhost:8000` in your browser
 
+### GitHub Pages
+
+The frontend deploys automatically from the `main` branch using GitHub Actions. In GitHub, open **Settings > Pages** and set **Source** to **GitHub Actions**. The published site uses browser local storage, so account and transaction data stays in the browser used to access the site. The Node.js backend is used when running the project locally.
+
 ## API Endpoints
 
 ### Authentication

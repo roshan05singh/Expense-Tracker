@@ -1,5 +1,10 @@
 // ===== HOMEPAGE & AUTH FUNCTIONS =====
-const API_BASE = 'http://localhost:3001'; // change if backend runs elsewhere
+const IS_STATIC_HOST = window.location.hostname.endsWith('github.io') || window.location.protocol === 'file:';
+const API_BASE = IS_STATIC_HOST ? '' : 'http://localhost:3001';
+
+if (IS_STATIC_HOST) {
+  localStorage.removeItem('token');
+}
 
 function goToAuth() {
   document.getElementById('homepage').style.display = 'none';
@@ -55,6 +60,7 @@ function signup() {
     }
 
     try {
+      if (!API_BASE) throw new Error('Static mode');
       const resp = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -79,11 +85,7 @@ function signup() {
         loadTransactions();
         updateDashboardStats();
         return;
-      } else {
-        const err = await resp.json().catch(()=>({message:'Register failed'}));
-        alert('Register error: ' + (err.message || resp.statusText));
-        return;
-      }
+      } else throw new Error('Register failed');
     } catch (e) {
       console.debug('Register fetch failed, falling back to localStorage', e);
       // fallback: localStorage
@@ -112,6 +114,7 @@ function login() {
     }
 
     try {
+      if (!API_BASE) throw new Error('Static mode');
       const resp = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -136,9 +139,7 @@ function login() {
         return;
       }
 
-      // if server responds but credentials invalid
-      const err = await resp.json().catch(()=>({message:'Invalid credentials'}));
-      alert(err.message || 'Login failed');
+      throw new Error('Invalid credentials');
     } catch (e) {
       console.debug('Login fetch failed, falling back to localStorage', e);
       // fallback to local storage auth
